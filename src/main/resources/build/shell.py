@@ -7,7 +7,7 @@ def get_classes(local_val: dict):
             if isinstance(value, cls[1]):
                 attr_value = {}
                 for atkey in local_val[key].__dict__.keys():
-                    attr_value[atkey] = local_val[key].__dict__[atkey]
+                    attr_value[atkey] = [local_val[key].__dict__[atkey], type(local_val[key].__dict__[atkey])]
                 attr_value['type'] = cls[0]
                 classes_values[key] = attr_value
                 break
