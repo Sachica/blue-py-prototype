@@ -73,7 +73,7 @@ public class InteractiveShell {
     public List<String> getBuffer() {
         if (this.buffer.isEmpty() || !this.buffer.get(this.buffer.size() - 1).equals("key")) {
             try {
-                Thread.sleep(500);
+                Thread.sleep(250);
             } catch (InterruptedException err) {
             }
             this.getBuffer();
