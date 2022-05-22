@@ -39,7 +39,12 @@ public class Controller implements KeyListener, ActionListener, MouseListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.ide.getButtonLoad()) {
             try {
-                this.shell.initShell(this.ide.getWorkingDir());
+                if(!this.ide.getWorkingDir().isEmpty()){
+                    this.shell.initShell(this.ide.getWorkingDir());
+                    JOptionPane.showMessageDialog(null, "Your shell is ready!", "Information", JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Please select a workspace", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             } catch (FileNotFoundException err) {
                 err.printStackTrace();
             } catch (IOException err) {

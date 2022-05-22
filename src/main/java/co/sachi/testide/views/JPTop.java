@@ -33,6 +33,7 @@ public class JPTop implements IPanel{
         
         this.txtWorkingDir = new JTextField();
         this.txtWorkingDir.setEditable(false);
+        this.workingDir = null;
         this.btnLoad = new JButton("Load");
         this.btnLoad.addActionListener(a);
         this.btnLoad.addActionListener(new ActionListener() {
@@ -57,7 +58,7 @@ public class JPTop implements IPanel{
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         chooser.showOpenDialog(null);
         
-        this.workingDir = chooser.getSelectedFile() != null ? chooser.getSelectedFile().getAbsolutePath() : null;
+        this.workingDir = chooser.getSelectedFile() != null ? chooser.getSelectedFile().getAbsolutePath() : this.workingDir;
         this.lastDir = chooser.getCurrentDirectory().getAbsolutePath();
         this.txtWorkingDir.setText(workingDir);
     }
