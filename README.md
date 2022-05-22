@@ -23,16 +23,16 @@ git clone https://github.com/Sachica/blue-py-prototype.git
 ## Preview
 
 ### Initial state
-<img src="">
+<img src="https://github.com/Sachica/blue-py-prototype/blob/master/imgs/1.PNG">
 
 ### Create objects
-<img src="">
+<img src="https://github.com/Sachica/blue-py-prototype/blob/master/imgs/2.PNG">
 
 ### View objects
-<img src="">
+<img src="https://github.com/Sachica/blue-py-prototype/blob/master/imgs/3.PNG">
 
 ### Excuting commands and change objects
-<img src="">
+<img src="https://github.com/Sachica/blue-py-prototype/blob/master/imgs/4.PNG">
 
 ### View changes
-<img src="">
+<img src="https://github.com/Sachica/blue-py-prototype/blob/master/imgs/5.PNG">
