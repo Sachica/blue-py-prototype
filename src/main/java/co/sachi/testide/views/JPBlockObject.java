@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -58,7 +59,7 @@ public class JPBlockObject extends JPanel implements IBlockObject {
         lbl.setBackground(background);
         lbl.setFont(new Font("Serif", Font.PLAIN, fontSize));
         lbl.setHorizontalAlignment(SwingConstants.CENTER);
-        if(border){
+        if (border) {
             lbl.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         }
     }
@@ -67,24 +68,46 @@ public class JPBlockObject extends JPanel implements IBlockObject {
     public void showDialog() {
         JPanel panel = new JPanel(new GridBagLayout());
         int i = 0;
-        for(String key: this.attrInfo.keySet()){
-            JPanel panelInfo = new JPanel(new GridLayout(1, 2));
-            JLabel lblKey = new JLabel(key);
-            JLabel lblVal = new JLabel(this.attrInfo.get(key).toString());
-            
-            this.customLabel(lblKey, Color.BLACK, Color.WHITE, 14, true);
-            this.customLabel(lblVal, Color.BLACK, Color.WHITE, 14, true);
-            
-            panelInfo.add(lblKey);
-            panelInfo.add(lblVal);
-            
-            try{
-                ViewTool.insert(panel, panelInfo, 0, i++, 1, 0, 1, 1, GridBagConstraints.HORIZONTAL, GridBagConstraints.CENTER, null, 0, 0);
-            }catch(Exception e){
-                //nunca ocurre
+        JPanel panelInfo = new JPanel(new GridLayout(1, 3));
+        JLabel lblKey = new JLabel("Name");
+        JLabel lblVal = new JLabel("Value");
+        JLabel lblType = new JLabel("Type");
+
+        this.customLabel(lblKey, Color.BLACK, Color.LIGHT_GRAY, 14, true);
+        this.customLabel(lblVal, Color.BLACK, Color.LIGHT_GRAY, 14, true);
+        this.customLabel(lblType, Color.BLACK, Color.LIGHT_GRAY, 14, true);
+
+        panelInfo.add(lblKey);
+        panelInfo.add(lblVal);
+        panelInfo.add(lblType);
+        try {
+            ViewTool.insert(panel, panelInfo, 0, i++, 1, 0, 1, 1, GridBagConstraints.HORIZONTAL, GridBagConstraints.CENTER, null, 0, 0);
+        } catch (Exception e) {
+            //nunca ocurre
+        }
+        JSONArray data;
+        for (String key : this.attrInfo.keySet()) {
+            if (!key.equals("type")) {
+                data = (JSONArray) this.attrInfo.getJSONArray(key);
+                panelInfo = new JPanel(new GridLayout(1, 3));
+                lblKey = new JLabel(key);
+                lblVal = new JLabel(data.get(0).toString());
+                lblType = new JLabel(data.get(1).toString());
+                this.customLabel(lblKey, Color.BLACK, Color.WHITE, 14, true);
+                this.customLabel(lblVal, Color.BLACK, Color.WHITE, 14, true);
+                this.customLabel(lblType, Color.BLACK, Color.WHITE, 14, true);
+
+                panelInfo.add(lblKey);
+                panelInfo.add(lblVal);
+                panelInfo.add(lblType);
+
+                try {
+                    ViewTool.insert(panel, panelInfo, 0, i++, 1, 0, 1, 1, GridBagConstraints.HORIZONTAL, GridBagConstraints.CENTER, null, 0, 0);
+                } catch (Exception e) {
+                    //nunca ocurre
+                }
             }
         }
         JOptionPane.showMessageDialog(null, panel, "Information", JOptionPane.INFORMATION_MESSAGE);
     }
 }
-
